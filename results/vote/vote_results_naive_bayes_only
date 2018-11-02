@@ -1,0 +1,20 @@
+Namespace(num_classes=2)
+
+train_data group 0 length:  349
+Naive Bayes Accuracy (%): 87.20930232558139
+
+train_data group 1 length:  348
+Naive Bayes Accuracy (%): 90.80459770114942
+
+train_data group 2 length:  348
+Naive Bayes Accuracy (%): 90.80459770114942
+
+train_data group 3 length:  348
+Naive Bayes Accuracy (%): 88.50574712643679
+
+train_data group 4 length:  347
+Naive Bayes Accuracy (%): 92.04545454545455
+Naive Bayes Average Accuracy (%):
+89.87393987995432 %
+Logistic Regression Average pruned Accuracy (%):
+0 %

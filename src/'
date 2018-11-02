@@ -1,0 +1,257 @@
+#!/usr/local/bin/python3
+
+#@author		Brandon Tarney
+#@date			8/31/2018
+#@description	ClassificationTree class
+
+import numpy as np
+import pandas as pd
+import argparse
+import operator
+import random
+import math
+import copy
+from base_model import BaseModel
+
+#=============================
+# TreeNode
+#
+# - Class to encapsulate a tree nodek
+#	- feature_id = column idx of data chosen
+#		- Note at a leaf node, data[0] == class val 
+#	- feature_col = feature column chosen for given node 
+#		- i.e. when traversing, this is the value you examine @ this node
+#		- leaf node is unset, -1, or something DO NOT USE
+#=============================
+class TreeNode:
+	def __init__(self, data, feature_id, isLeaf):
+		self.data = data
+		self.feature_col = feature_col
+		#self.feature = feature #actual feature chosen for this node
+		self.isLeaf = isLeaf
+		#self.feature_id = feature_id #id of the feature in the original data - not sure it's useful
+		#self.parent = parent #might be extra!
+		self.children = dict{}
+
+	def get_classification(self):
+		#TODO: get the majority class of the data @ this node
+		#		- will provide easy way to prune!
+		#TODO: centralize this code (build_tree uses)
+
+
+#=============================
+# ClassificationTree
+#
+# - Class to encapsulate a tree classification decision model for 
+#=============================
+class ClassificationTree(BaseModel) :
+
+	def __init__(self, data):
+		BaseModel.__init__(self, data)
+
+	#=============================
+	# train()
+	#
+	#	- train on the data set
+	#=============================
+	def train(self):
+		#TODO: build tree!
+		features = range(0:len(self.data[0]))
+		self.tree = self.buid_tree(self.data, 0)
+		return self.tree
+
+	#=============================
+	# build_tree()
+	#	- builds the internal classification tree
+	#		- called recursively
+	#=============================
+	def build_tree(self, data, features_available, recursive_depth):
+		recursive_depth = recursive_depth + 1
+		#Sanity check
+		if (recursive_depth > 100):
+			print('Runaway Recursion!, exceeding max recursive depth', + recursive_depth)
+			return
+
+		#TODO:
+		tree_node = TreeNode(data, 
+
+
+		best_feature = get_best_feature(data, features_available)
+		#get the class stats: number of of each class and total num classes
+		#TODO: centralize this code (tree node uses)
+		classes = [data[-1] for row in data]
+		unique_classes = set(classes)
+		#If there is only one class, you're done!
+		number_unique_classes = len(unique_classes)
+		if (number_unique_classes == 1):
+			isLeaf = True
+			tree_node = TreeNode(data, isLeaf)
+			return tree_node
+
+		for feature in unique_chosen_features:
+			#TODO: handle numeric vs. category features
+			#TODO: get feature subset (partitions)!
+			tree_node.children[feature] = build_tree(feature, recursive_depth)
+		
+
+		return tree_node
+
+	#=============================
+	# get_best_feature()
+	#=============================
+	def get_best_feature(self, data, features_available):
+		#Information gain / information value
+		best_feature_performance = -1
+		best_feature = -1
+		for feature in features_available:
+			feature_performance = self.calculate_gain_ratio(data, feature)
+			if feature_performance > best_feature_performance:
+				best_feature = feature
+				best_feature_performance = feature_performance
+		return best_feature
+	
+	#=============================
+	# calculate_gain_ratio()
+	#=============================
+	def calculate_gain_ratio(self, data, feature):
+		#Information gain / information value
+		info_gain = self.calculate_information_gain(data, feature)
+		info_value = self.calculate_information_val(data, feature)
+
+		return float(info_gain / info_value)
+
+	#=============================
+	# calculate_information_gain()
+	#=============================
+	def calculate_informaiton_gain(self, feature):
+		information = self.calculation_information(data)
+		entropy = self.calculate_entropy(data, feature)
+		return float(information - entropy)
+
+	#=============================
+	# calculate_information()
+	#=============================
+	def calculate_information(self, data):
+		total_info_val = 0
+		classes = [data[-1] for row in data]
+		num_class_vals = len(classes)
+		unique_classes = set(classes)
+		for a_class in unique_classes:
+			number_of_a_class = classes.count(a_class)
+			ratio = float(number_of_a_class / num_class_vals)
+			class_info_val = ratio * math.log(ratio, 2)
+			total_info_val = total_info_val + class_info_val
+
+		return float(-1 * total_info_val)
+
+
+	#=============================
+	# calculate_entropy()
+	#=============================
+	def calculate_entropy(self, data, feature):
+		#TODO: centralize & do this once: repeated in calc entropy
+		#TODO: handle numeric inputs (i.e. try splits at every possible split)
+		feature_values = data[feature]
+		unique_feature_values = set(feature_values)
+		print(unique_feature_values)
+		total_feature_entropy = 0
+		total_class_values = len(data)
+		for feature_value in unique_feature_values:
+			#Get dataset for this feature:
+			feature_data = [data for row in data if row[feature] == feature_value]
+			feature_data_info = self.calculate_information(feature_data)
+			class_values_in_feature_subset = len(feature_data)
+			ratio = class_values_in_feature_subset/total_class_values
+			total_feature_entropy = total_feature_entropy + float(ratio * feature_data_info)
+
+		return total_feature_entropy
+
+	#=============================
+	# calculate_information_value()
+	#=============================
+	def calculate_information_val(self, data, feature):
+		#TODO: centralize & do this once: repeated in calc entropy
+		#TODO: handle numeric inputs (i.e. try splits at every possible split)
+		feature_values = data[feature]
+		unique_feature_values = set(feature_values)
+		print(unique_feature_values)
+		total_info_value = 0.0
+		total_class_values = len(data)
+		for feature_value in unique_feature_values:
+			#Get dataset for this feature:
+			feature_data = [data for row in data if row[feature] == feature_value]
+			class_values_in_feature_subset = len(feature_data)
+			ratio = float(class_values_in_feature_subset/total_class_values)
+			total_info_value = float(info_value + (ratio * math.log(ratio, 2)))
+
+		return float(-1 * total_info_value)
+
+	#=============================
+	# validate()
+	#
+	#	- validate the data, i.e. prune or optimize for generalization
+	#=============================
+	def train(self):
+		#TODO: pruning here
+		#	- 1. calculate overall performance
+			#- 2. recursively traverse where for each node
+				#- set each child to "isLeaf" thereby triggering majority calculation 
+				#- save performance value
+				#- immediately return once you've got a better performance value than the original tree
+			#- 3. Calculate performance for NEW tree, repeat above
+		return
+
+	#=============================
+	# evaluate()
+	#
+	#	- evaluate the model 
+	#
+	#@return				value of performance
+	#=============================
+	def evaluate(self):
+		#TODO: Traverse the tree
+		#	- will require separate logic for category vs. numeric
+		return -1
+
+
+#=============================
+# MAIN PROGRAM
+#=============================
+def main():
+	print('Main() - testing test model')
+
+	print()
+	print('TEST 1: dummy data')
+	print('input data1:')
+	#TODO: turn this into dataframe
+	#test_data = pd.DataFrame([[0, 1, -1], [0, 1, -1],[0, 1, -1]])
+	test_data = [ \
+			['Sunny', 'Hot', 'High', 'False', 'N'],
+			['Sunny', 'Hot', 'High', 'True', 'N'],
+			['Overcast', 'Hot', 'High', 'False', 'P'],
+			['Rainy', 'Mild', 'High', 'False', 'P'],
+			['Rainy', 'Cool', 'Normal', 'False', 'P'],
+			['Rainy', 'Cool', 'Normal', 'True', 'N'],
+			['Overcast', 'Cool', 'Normal', 'True', 'P'],
+			['Sunny', 'Mild', 'High', 'False', 'N'],
+			['Sunny', 'Cool', 'Normal', 'False', 'P'],
+			['Rainy', 'Mild', 'Normal', 'False', 'P'],
+			['Sunny', 'Mild', 'Normal', 'True', 'P'],
+			['Overcast', 'Mild', 'High', 'True', 'P'],
+			['Overcast', 'Hot', 'Normal', 'False', 'P'] \
+			]
+	#test_data2 = #TODO: something with numerics?!
+
+	print(test_data)
+	print()
+
+	classification_tree = ClassificationTree(test_data)
+	classification_tree.train()
+	validation_data = test_data
+	#validatedTree = test_model.validate() #Should be 0 pruning....
+	#result = test_model.evaluate()
+	#print(result)
+
+
+if __name__ == '__main__':
+	main()
