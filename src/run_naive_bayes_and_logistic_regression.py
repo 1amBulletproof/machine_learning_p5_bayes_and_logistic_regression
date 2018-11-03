@@ -20,7 +20,7 @@ import pandas as pd
 #		test on 5th, cycle the 4/5 & repeat 5 times
 #		Record overall result!
 #=============================
-def run_models_with_cross_validation(num_classes=2):
+def run_models_with_cross_validation(num_classes=2, learning_rate = 0.5):
 
 	#GET DATA
 	#- expect data_0 ... data_4
@@ -63,8 +63,7 @@ def run_models_with_cross_validation(num_classes=2):
 		model1 = NaiveBayes(num_classes)
 		model2 = LogisticRegression(pd.DataFrame(train_data))
 		model1.train(train_data)
-		logistic_learning_rate = 0.5
-		model2.train(pd.DataFrame(train_data), logistic_learning_rate)
+		model2.train(pd.DataFrame(train_data), learning_rate)
 		print_classifications = False
 		if (test_group_id == 0): #Required to print classifications for one fold
 			print_classifications = True
@@ -95,11 +94,13 @@ def main():
 	#print('LOG: Main program to pre-process House-Votes-84.data file')
 	parser = argparse.ArgumentParser(description='Run the classification tree test')
 	parser.add_argument('num_classes', type=int, help='number of classes to expect')
+	parser.add_argument('learning_rate', type=float, help='rate at which the logistic regression learns')
 	args = parser.parse_args()
 	print(args)
 	num_classes = args.num_classes
+	learning_rate = args.learning_rate
 
-	final_result = run_models_with_cross_validation(num_classes)
+	final_result = run_models_with_cross_validation(num_classes, learning_rate)
 	print()
 	print('Naive Bayes AVG Accuracy (%):', final_result[0], '%') 
 	print('Logistic Regression AVG Accuracy (%):', final_result[1], '%')

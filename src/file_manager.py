@@ -44,7 +44,10 @@ class FileManager:
 			#convert this data to int from string
 			data_as_int = []
 			for vector in all_data:
-				tmp_int_vector = list(map(int, vector))
+				#convert to float first in case decimal val 
+				#(i.e. '0.0'->float->int works, but not '0.0'->int)
+				tmp_int_vector = list(map(float, vector)) 
+				tmp_int_vector = list(map(int, tmp_int_vector))
 				data_as_int.append(tmp_int_vector)
 			return data_as_int
 
