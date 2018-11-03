@@ -40,6 +40,14 @@ class FileManager:
 				data_as_float.append(tmp_float_vector)
 			return data_as_float
 
+		if type == 'int':
+			#convert this data to int from string
+			data_as_int = []
+			for vector in all_data:
+				tmp_int_vector = list(map(int, vector))
+				data_as_int.append(tmp_int_vector)
+			return data_as_int
+
 		#print(all_data)
 		#print('LOG: get_csv_file_data_array() END')
 		return all_data

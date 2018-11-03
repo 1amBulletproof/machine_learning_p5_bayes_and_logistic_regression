@@ -5,12 +5,13 @@
 #@description	run experiment
 
 from naive_bayes import NaiveBayes
-#from logistic_regression import LogisticRegression
+from logistic_regression import LogisticRegression
 
 import argparse
 from file_manager import FileManager
 #from data_manipulator import DataManipulator
 import numpy as np
+import pandas as pd
 
 #=============================
 # run_model()
@@ -24,11 +25,12 @@ def run_models_with_cross_validation(num_classes=2):
 	#GET DATA
 	#- expect data_0 ... data_4
 	data_groups = list()
-	data_groups.append(FileManager.get_csv_file_data_array('data_0'))
-	data_groups.append(FileManager.get_csv_file_data_array('data_1'))
-	data_groups.append(FileManager.get_csv_file_data_array('data_2'))
-	data_groups.append(FileManager.get_csv_file_data_array('data_3'))
-	data_groups.append(FileManager.get_csv_file_data_array('data_4'))
+	data_type = 'int'
+	data_groups.append(FileManager.get_csv_file_data_array('data_0', data_type))
+	data_groups.append(FileManager.get_csv_file_data_array('data_1', data_type))
+	data_groups.append(FileManager.get_csv_file_data_array('data_2', data_type))
+	data_groups.append(FileManager.get_csv_file_data_array('data_3', data_type))
+	data_groups.append(FileManager.get_csv_file_data_array('data_4', data_type))
 	
 
 	NUM_GROUPS = len(data_groups)
@@ -59,22 +61,25 @@ def run_models_with_cross_validation(num_classes=2):
 		model1_result = 0
 		model2_result = 0
 		model1 = NaiveBayes(num_classes)
-		#model2 = LogisticRegression(train_data)
+		model2 = LogisticRegression(pd.DataFrame(train_data))
 		model1.train(train_data)
-		#model2.train()
-		model1_result = model1.test(test_data) # returns (attempts, fails, success)
+		logistic_learning_rate = 0.5
+		model2.train(pd.DataFrame(train_data), logistic_learning_rate)
+		print_classifications = False
+		if (test_group_id == 0): #Required to print classifications for one fold
+			print_classifications = True
+		model1_result = model1.test(test_data, print_classifications) # returns (attempts, fails, success)
 		#print('result:', result)
 		model1_accuracy = (model1_result[2]/model1_result[0]) * 100
 		print('Naive Bayes Accuracy (%):', model1_accuracy)
-		#model2_result = model2.test(test_data)
-		#print('result:', result)
-		#print('Logistic Regression Accuracy (%):', result2)
+		model2_result = model2.test(pd.DataFrame(test_data), print_classifications) # returns (% accuracy)
+		print('Logistic Regression Accuracy (%):', model2_result)
 		model1_culminating_result = model1_culminating_result + model1_accuracy
-		#model2_culminating_result = model2_culminating_result + model2_result
+		model2_culminating_result = model2_culminating_result + model2_result
 
 
 	model1_final_average_result = model1_culminating_result / NUM_GROUPS
-	#model2_final_average_result = model2_culminating_result / NUM_GROUPS
+	model2_final_average_result = model2_culminating_result / NUM_GROUPS
 	#print()
 	#print('final average result:')
 	#print(final_average_result)
@@ -95,10 +100,9 @@ def main():
 	num_classes = args.num_classes
 
 	final_result = run_models_with_cross_validation(num_classes)
-	print('Naive Bayes Average Accuracy (%):') 
-	print(final_result[0], '%')
-	print('Logistic Regression Average pruned Accuracy (%):')
-	print(final_result[1], '%')
+	print()
+	print('Naive Bayes AVG Accuracy (%):', final_result[0], '%') 
+	print('Logistic Regression AVG Accuracy (%):', final_result[1], '%')
 
 
 if __name__ == '__main__':

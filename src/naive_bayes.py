@@ -117,9 +117,10 @@ class NaiveBayes:
 	#	- Assumes the model has already been trained! Otherwise pointless
 	#
 	#@param test_vectors	2D matrix of format [X0,X1...Xn, Class]
+	#@param print_classifications	boolean to decide whether to display classificaiton
 	#@return				ouput_vector
 	#=============================
-	def test(self, test_vectors):
+	def test(self, test_vectors, print_classifications=False):
 		class_attempts = 0
 		class_fails = 0
 		class_success = 0
@@ -146,6 +147,10 @@ class NaiveBayes:
 				class_success += 1
 			else:
 				class_fails += 1
+
+			if print_classifications:
+				print('input:', test_vector)
+				print('class:', self._get_expected_result(test_vector), '  predicted-class:', classification_stats[0])
 
 		#4 - choose the largest value
 
