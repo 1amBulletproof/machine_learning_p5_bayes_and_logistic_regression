@@ -1,0 +1,144 @@
+Namespace(learning_rate=0.5, num_classes=3)
+
+train_data group 0 length:  120
+input: [1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0]
+class: 0   predicted-class: 0
+input: [0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0]
+class: 0   predicted-class: 0
+input: [1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0]
+class: 0   predicted-class: 0
+input: [1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0]
+class: 0   predicted-class: 0
+input: [1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0]
+class: 0   predicted-class: 0
+input: [1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0]
+class: 0   predicted-class: 0
+input: [0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0]
+class: 0   predicted-class: 0
+input: [1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0]
+class: 0   predicted-class: 0
+input: [0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0]
+class: 0   predicted-class: 0
+input: [0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0]
+class: 0   predicted-class: 0
+input: [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1]
+class: 1   predicted-class: 1
+input: [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1]
+class: 1   predicted-class: 1
+input: [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1]
+class: 1   predicted-class: 1
+input: [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1]
+class: 1   predicted-class: 1
+input: [0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1]
+class: 1   predicted-class: 1
+input: [0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1]
+class: 1   predicted-class: 1
+input: [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1]
+class: 1   predicted-class: 2
+input: [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1]
+class: 1   predicted-class: 1
+input: [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1]
+class: 1   predicted-class: 1
+input: [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1]
+class: 1   predicted-class: 1
+input: [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 2]
+class: 2   predicted-class: 2
+input: [0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 2]
+class: 2   predicted-class: 2
+input: [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 2]
+class: 2   predicted-class: 2
+input: [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2]
+class: 2   predicted-class: 1
+input: [0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 2]
+class: 2   predicted-class: 2
+input: [0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 2]
+class: 2   predicted-class: 2
+input: [0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 2]
+class: 2   predicted-class: 2
+input: [0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 2]
+class: 2   predicted-class: 2
+input: [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 2]
+class: 2   predicted-class: 2
+input: [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2]
+class: 2   predicted-class: 1
+Naive Bayes Accuracy (%): 90.0
+input: [1 0 0 0 0 0 1 0 1 0 0 0 1 0 0 0 0]
+class: 0   predicted-class: 0
+input: [0 1 0 0 0 0 0 1 1 0 0 0 1 0 0 0 0]
+class: 0   predicted-class: 0
+input: [1 0 0 0 0 1 0 0 1 0 0 0 1 0 0 0 0]
+class: 0   predicted-class: 0
+input: [1 0 0 0 0 0 1 0 1 0 0 0 1 0 0 0 0]
+class: 0   predicted-class: 0
+input: [1 0 0 0 0 0 1 0 1 0 0 0 1 0 0 0 0]
+class: 0   predicted-class: 0
+input: [1 0 0 0 0 0 1 0 1 0 0 0 1 0 0 0 0]
+class: 0   predicted-class: 0
+input: [0 1 0 0 0 0 0 1 1 0 0 0 1 0 0 0 0]
+class: 0   predicted-class: 0
+input: [1 0 0 0 0 0 1 0 1 0 0 0 1 0 0 0 0]
+class: 0   predicted-class: 0
+input: [0 1 0 0 0 0 0 1 1 0 0 0 1 0 0 0 0]
+class: 0   predicted-class: 0
+input: [0 1 0 0 0 0 1 0 1 0 0 0 1 0 0 0 0]
+class: 0   predicted-class: 0
+input: [0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 0 1]
+class: 1   predicted-class: 1
+input: [0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 0 1]
+class: 1   predicted-class: 1
+input: [0 1 0 0 1 0 0 0 0 0 1 0 0 0 1 0 1]
+class: 1   predicted-class: 1
+input: [0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 0 1]
+class: 1   predicted-class: 1
+input: [0 0 1 0 0 1 0 0 0 0 1 0 0 0 1 0 1]
+class: 1   predicted-class: 1
+input: [0 0 1 0 0 1 0 0 0 0 1 0 0 0 1 0 1]
+class: 1   predicted-class: 1
+input: [0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 1]
+class: 1   predicted-class: 1
+input: [0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 0 1]
+class: 1   predicted-class: 1
+input: [0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 0 1]
+class: 1   predicted-class: 1
+input: [0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 0 1]
+class: 1   predicted-class: 1
+input: [0 1 0 0 1 0 0 0 0 0 0 1 0 0 1 0 2]
+class: 2   predicted-class: 1
+input: [0 0 0 1 0 1 0 0 0 0 0 1 0 0 1 0 2]
+class: 2   predicted-class: 2
+input: [0 0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 2]
+class: 2   predicted-class: 2
+input: [0 1 0 0 0 1 0 0 0 0 1 0 0 0 1 0 2]
+class: 2   predicted-class: 1
+input: [0 0 1 0 0 1 0 0 0 0 1 0 0 0 0 1 2]
+class: 2   predicted-class: 2
+input: [0 0 0 1 0 1 0 0 0 0 0 1 0 0 0 1 2]
+class: 2   predicted-class: 2
+input: [0 0 1 0 0 1 0 0 0 0 0 1 0 0 0 1 2]
+class: 2   predicted-class: 2
+input: [0 0 0 1 0 0 1 0 0 0 0 1 0 0 0 1 2]
+class: 2   predicted-class: 2
+input: [0 1 0 0 0 1 0 0 0 0 1 0 0 0 0 1 2]
+class: 2   predicted-class: 2
+input: [0 1 0 0 1 0 0 0 0 0 1 0 0 0 1 0 2]
+class: 2   predicted-class: 1
+Logistic Regression Accuracy (%): 90.0
+
+train_data group 1 length:  120
+Naive Bayes Accuracy (%): 93.33333333333333
+Logistic Regression Accuracy (%): 93.33333333333333
+
+train_data group 2 length:  120
+Naive Bayes Accuracy (%): 96.66666666666667
+Logistic Regression Accuracy (%): 96.66666666666667
+
+train_data group 3 length:  120
+Naive Bayes Accuracy (%): 90.0
+Logistic Regression Accuracy (%): 86.66666666666667
+
+train_data group 4 length:  120
+Naive Bayes Accuracy (%): 86.66666666666667
+Logistic Regression Accuracy (%): 83.33333333333333
+
+Naive Bayes AVG Accuracy (%): 91.33333333333334 %
+Logistic Regression AVG Accuracy (%): 90.0 %

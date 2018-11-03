@@ -1,0 +1,10 @@
+breast_cancer_results_2_class_learningrate_0_5:
+	Logistic Regression AVG Accuracy (%): 79.9366680978961 %
+glass_results_6_class_learningrate_0_5:
+	Logistic Regression AVG Accuracy (%): 41.59267089499648 %
+iris_result_3_class_learningrate_0_5:
+	Logistic Regression AVG Accuracy (%): 90.0 %
+soybean_results_4_class_learningrate_0_5:
+	Logistic Regression AVG Accuracy (%): 74.22222222222221 %
+vote_results_2_class_learningrate_0_5:
+	Logistic Regression AVG Accuracy (%): 88.73757624359068 %
